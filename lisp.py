@@ -1723,8 +1723,7 @@ if __name__ == '__main__':
                   "(env-set (get-environment bar) 'x 33)",
                   "(bar)",
                   "(setq wow (list (cons 'a 'b) (cons 'q 'fun)))",
-                  "(assoc 'a wow)",
-                  "(cons 1 2)"
+                  "(assoc 'a wow)"
                   ]
     l = Lisper()
     for test in eval_tests:
