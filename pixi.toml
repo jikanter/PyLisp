@@ -1,0 +1,11 @@
+[workspace]
+authors = ["Jordan Kanter <jikanter@gmail.com>"]
+channels = ["conda-forge"]
+name = "pylisp"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "3.13.*"
