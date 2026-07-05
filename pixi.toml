@@ -11,3 +11,4 @@ test = "bash test.sh"
 [dependencies]
 python = "3.12.*"
 click = ">=8.4.2,<9"
+pytest = ">=9.1.1,<10"

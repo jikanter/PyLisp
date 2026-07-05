@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from pprint import pp
 
 # Copyright (c) 2000 - 2002 William S. Annis.  All rights reserved.
 # This is free software; you can redistribute it and/or modify it
@@ -1409,7 +1410,21 @@ class Lisper(object):
         return args[0].eval(env).get(args[1].eval(env).n)
 
     def do_elt(self, env, args):
-        return args[1].eval(env)[args[0].eval(env).v]
+        """(elt list index) - get the element at the given index in the list
+
+        Index is 0-based.
+        Args:
+            list: the list to get the element from
+            index: the index of the element to get
+
+        Returns:
+            the element at the given index in the list
+
+        Raises:
+            IndexError: if the index is out of bounds
+        """
+        # this is easy enough to use a native python list on
+        return args[0].eval(env)[args[1].eval(env)]
 
     def do_apply(self, env, args):
         # This shuffles the args about a bit, conses the function, then evals.
@@ -1725,8 +1740,9 @@ if __name__ == '__main__':
                   "(setq wow (list (cons 'a 'b) (cons 'q 'fun) (cons 'b '(local genai systems))))",
                   "(assoc 'a wow)",
                   "(assoc 'q wow)",
-                  "(assoc 'b wow)" # this is a failure, it should return the entire list
-                  ]
+                  "(assoc 'b wow)", # this is a failure, it should return the entire list
+"(elt '(1 2 3) 0)"
+    ]
     l = Lisper()
     if len(sys.argv) > 1 and "--test" in sys.argv:
         for test in eval_tests:
