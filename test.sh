@@ -1,1 +1,1 @@
-pixi run python lisp.py
+pixi run python lisp.py --test --batch

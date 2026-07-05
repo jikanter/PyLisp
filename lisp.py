@@ -1722,15 +1722,18 @@ if __name__ == '__main__':
                   "(bar)",
                   "(env-set (get-environment bar) 'x 33)",
                   "(bar)",
-                  "(setq wow (list (cons 'a 'b) (cons 'q 'fun)))",
-                  "(assoc 'a wow)"
+                  "(setq wow (list (cons 'a 'b) (cons 'q 'fun) (cons 'b '(local genai systems))))",
+                  "(assoc 'a wow)",
+                  "(assoc 'q wow)",
+                  "(assoc 'b wow)" # this is a failure, it should return the entire list
                   ]
     l = Lisper()
-    for test in eval_tests:
-        print(test, ":", l.eval(g.get_sexpr(test)))
-
+    if len(sys.argv) > 1 and "--test" in sys.argv:
+        for test in eval_tests:
+            print(test, ":", l.eval(g.get_sexpr(test)))
+    #print("sys.argv[1]: ", sys.argv[1])
+    if len(sys.argv) > 1 and "--batch" in sys.argv:
+        sys.exit(0)
     l.repl()
 
 # EOF
-
-
